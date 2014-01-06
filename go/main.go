@@ -21,8 +21,6 @@ func signup(workerId int, req *worker.Request) (res worker.Response, resTube str
 	fmt.Println("SIGNUP")
 	d := req.Data.(map[string]interface{})
 
-	fmt.Println("D:", d)
-
 	var u User
 	u.Name = d["name"].(string)
 	u.Email = d["email"].(string)
@@ -36,8 +34,8 @@ func signup(workerId int, req *worker.Request) (res worker.Response, resTube str
 	} else {
 		res.Success = false
 	}
-	res.Data = u
 
+	res.Data = u
 	resTube = fmt.Sprintf("response_%d", req.RequestId)
 
 	return

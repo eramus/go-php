@@ -23,9 +23,9 @@ class SignupController extends \Phalcon\Mvc\Controller
 
 		print '['.microtime(true).'] WAIT FOR RESPONSES<br>';
 		$this->beanstalk->ignore('default');
+		$this->beanstalk->watch('response_'.REQUEST_ID);
 
 		for ($i = 0; $i < 2; ++$i) {
-			$this->beanstalk->watch('response_'.REQUEST_ID);
 			$job = $this->beanstalk->reserve();
 			$this->beanstalk->delete($job['id']);
 
@@ -35,13 +35,13 @@ class SignupController extends \Phalcon\Mvc\Controller
 				continue;
 			}
 
-/*			$this->events->add(new \BetterScience\Event\Beanstalk([
+			$this->events->add(new \BetterScience\Event\Beanstalk([
 				'tube' => 'after_request',
 				'action' => 'lookup',
 				'data' => [
 					'user' => $data['data']['id']
 				]
-			]));*/
+			]));
 		}
 
 		print '['.microtime(true).'] FINISHED REQUEST<br>';
