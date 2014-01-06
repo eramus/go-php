@@ -1,4 +1,0 @@
-
-<h1>Hello!</h1>
-
-<?php echo Phalcon\Tag::linkTo(array('signup', 'Sign Up Here!')); ?>
