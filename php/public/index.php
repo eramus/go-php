@@ -24,13 +24,13 @@ try {
 
     $events = new \BetterScience\Events;
     $events->setDI($di);
-    $events->add(new \BetterScience\Event\Beanstalk([
+/*    $events->add(new \BetterScience\Event\Beanstalk([
         'tube' => 'default',
         'action' => 'request',
         'data' => [
             'page' => $_SERVER['REQUEST_URI']
         ]
-    ]));
+    ]));*/
 
     $di->set('events', $events);
 

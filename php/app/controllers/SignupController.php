@@ -35,13 +35,13 @@ class SignupController extends \Phalcon\Mvc\Controller
 				continue;
 			}
 
-			$this->events->add(new \BetterScience\Event\Beanstalk([
+/*			$this->events->add(new \BetterScience\Event\Beanstalk([
 				'tube' => 'after_request',
 				'action' => 'lookup',
 				'data' => [
 					'user' => $data['data']['id']
 				]
-			]));
+			]));*/
 		}
 
 		print '['.microtime(true).'] FINISHED REQUEST<br>';
