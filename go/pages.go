@@ -13,14 +13,5 @@ func main() {
 		return
 	}
 
-	var i = 0
-	deadWorker := make(chan bool)
-	for i = 0; i < 5; i++ {
-		go worker.Run(i, "pages", f, deadWorker)
-	}
-	for {
-		<-deadWorker
-		i++
-		go worker.Run(i, "pages", f, deadWorker)
-	}
+	worker.Run("pages", f)
 }

@@ -50,14 +50,5 @@ func main() {
 		return
 	}
 
-	var i = 0
-	deadWorker := make(chan bool)
-	for i = 0; i < 5; i++ {
-		go worker.Run(i, "after_request", f, deadWorker)
-	}
-	for {
-		<-deadWorker
-		i++
-		go worker.Run(i, "after_request", f, deadWorker)
-	}
+	worker.Run("after_request", f)
 }

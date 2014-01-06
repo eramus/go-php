@@ -52,14 +52,5 @@ func main() {
 		panic(fmt.Sprintf("Got error when connect database, the error is '%v'", err))
 	}
 
-	var i = 0
-	deadWorker := make(chan bool)
-	for i = 0; i < 5; i++ {
-		go worker.Run(i, "default", signup, deadWorker)
-	}
-	for {
-		<-deadWorker
-		i++
-		go worker.Run(i, "default", signup, deadWorker)
-	}
+	worker.Run("default", signup)
 }
