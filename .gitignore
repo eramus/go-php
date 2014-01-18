@@ -1,1 +1,4 @@
 php/app/compiled/*
+zephir/*/ext
+zephir/*/.temp
+*sublime*
